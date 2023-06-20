@@ -6,3 +6,18 @@
  - <https://brasilapi.com.br/api/cptec/v1/cidade/{cityName}>
  ### Previsão
  - <https://brasilapi.com.br/api/cptec/v1/clima/previsao/{cityCode}>
+
+## Todo
+- Recicler Cidade
+- Rooms Cidade
+- Recicler Principal
+- Get Clima
+- Tela add Cidade
+- Tela Cidade List
+- Tela Cidade Detail
+- Room notas
+- Tela Login
+- Tela Cadastro
+- Room Users
+- Prefs
+- Recicler Principal User
