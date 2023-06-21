@@ -26,4 +26,8 @@ class CityDaoServices(context: Context) {
             }
         }
     }
+
+    fun getAll(): List<CityDb>{
+        return cityDao.getAll()
+    }
 }
