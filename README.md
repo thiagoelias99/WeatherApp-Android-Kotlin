@@ -8,7 +8,7 @@
  - <https://brasilapi.com.br/api/cptec/v1/clima/previsao/{cityCode}>
 
 ## Todo
-- Recicler Cidade
+- Recicler Cidade - OK
 - Rooms Cidade
 - Recicler Principal
 - Get Clima

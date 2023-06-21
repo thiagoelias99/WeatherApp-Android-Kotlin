@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.puc.telias.weatherapp.R
 import com.puc.telias.weatherapp.databinding.RecyclerItemCityBinding
@@ -36,6 +37,16 @@ class CityListAdapter(
 
             city.text = item.nome
             state.text = item.estado
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    val clickedCity = cities[position]
+                    Toast.makeText(context, "Clicou em ${clickedCity.nome}", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

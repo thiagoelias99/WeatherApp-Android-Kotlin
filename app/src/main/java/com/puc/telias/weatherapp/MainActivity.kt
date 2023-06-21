@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
         searchCityConfiguration()
 
         updateCitiesList()
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     fun updateCitiesList() {
         lifecycleScope.launch {
             val cities = CityServices().getCities(binding.editTextSearchCity.text.toString())
-//            citiesAdapter.update(cities)
+            citiesAdapter.update(cities)
         }
     }
 
