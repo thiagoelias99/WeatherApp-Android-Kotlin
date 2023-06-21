@@ -1,13 +1,13 @@
 package com.puc.telias.weatherapp.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.puc.telias.weatherapp.R
+import com.puc.telias.weatherapp.database.services.CityDaoServices
 import com.puc.telias.weatherapp.databinding.RecyclerItemCityBinding
 import com.puc.telias.weatherapp.models.City
 
@@ -17,6 +17,7 @@ class CityListAdapter(
 ) : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
 
     private val cities = cities.toMutableList()
+    private val citiesDaoServices = CityDaoServices(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = RecyclerItemCityBinding.inflate(LayoutInflater.from(context),parent,false)
@@ -44,6 +45,7 @@ class CityListAdapter(
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION){
                     val clickedCity = cities[position]
+                    citiesDaoServices.insertAll(clickedCity)
                     Toast.makeText(context, "Clicou em ${clickedCity.nome}", Toast.LENGTH_SHORT).show()
                 }
             }
