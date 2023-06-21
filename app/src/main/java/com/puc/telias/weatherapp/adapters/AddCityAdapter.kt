@@ -8,19 +8,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.puc.telias.weatherapp.R
 import com.puc.telias.weatherapp.database.services.CityDaoServices
-import com.puc.telias.weatherapp.databinding.RecyclerItemCityBinding
+import com.puc.telias.weatherapp.databinding.RecyclerAddCityBinding
 import com.puc.telias.weatherapp.models.City
 
-class CityListAdapter(
+class AddCityAdapter(
     private val context: Context,
     cities: List<City> = emptyList()
-) : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<AddCityAdapter.ViewHolder>() {
 
     private val cities = cities.toMutableList()
     private val citiesDaoServices = CityDaoServices(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RecyclerItemCityBinding.inflate(LayoutInflater.from(context),parent,false)
+        val binding = RecyclerAddCityBinding.inflate(LayoutInflater.from(context),parent,false)
         return ViewHolder(binding)
     }
 
@@ -31,7 +31,7 @@ class CityListAdapter(
 
     override fun getItemCount(): Int = cities.size
 
-    inner class ViewHolder(binding: RecyclerItemCityBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: RecyclerAddCityBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: City) {
             val city = itemView.findViewById<TextView>(R.id.city_name)
             val state = itemView.findViewById<TextView>(R.id.city_state)

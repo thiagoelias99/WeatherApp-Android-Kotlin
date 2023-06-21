@@ -1,32 +1,31 @@
-package com.puc.telias.weatherapp
+package com.puc.telias.weatherapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.puc.telias.weatherapp.adapters.CityListAdapter
-import com.puc.telias.weatherapp.database.configuration.AppDatabase
-import com.puc.telias.weatherapp.database.dao.CityDao
-import com.puc.telias.weatherapp.databinding.ActivityMainBinding
-import com.puc.telias.weatherapp.models.City
+import com.puc.telias.weatherapp.adapters.AddCityAdapter
+import com.puc.telias.weatherapp.database.services.CityDaoServices
+import com.puc.telias.weatherapp.databinding.ActivityAddCityBinding
 import com.puc.telias.weatherapp.services.CityServices
-import com.puc.telias.weatherapp.webclient.apiService
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class AddCityActivity : AppCompatActivity() {
     val TAG = "MainActivity"
 
     private val binding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
+        ActivityAddCityBinding.inflate(layoutInflater)
     }
 
     private val citiesAdapter by lazy {
-        CityListAdapter(context = this)
+        AddCityAdapter(context = this)
+    }
+    
+    private val cityDaoServices: CityDaoServices by lazy{
+        CityDaoServices(context = this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         searchCityConfiguration()
         recyclerViewConfiguration()
         updateCitiesList()
+        
+        val lista = cityDaoServices.getAll()
     }
 
     fun updateCitiesList() {
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun recyclerViewConfiguration() {
         binding.recyclerView.run {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(this@AddCityActivity)
             adapter = citiesAdapter
         }
     }
