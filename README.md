@@ -9,7 +9,7 @@
 
 ## Todo
 - Recicler Cidade - OK
-- Rooms Cidade
+- Rooms Cidade - OK
 - Recicler Principal
 - Get Clima
 - Tela add Cidade
