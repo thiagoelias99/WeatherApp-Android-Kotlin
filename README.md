@@ -21,3 +21,18 @@
 - Room Users
 - Prefs
 - Recicler Principal User
+
+## Models
+### City
+{
+    "code": "Int" (PK),
+    "name": "String",
+    "state": "String"
+    "updatedAt": "Date",
+    "date": "Date",
+    "conditionCode": "String",
+    "conditionDescription": "String",
+    "minTemperature": "Int",
+    "maxTemperature": "Int",
+    "uvIndex": "Int"
+}

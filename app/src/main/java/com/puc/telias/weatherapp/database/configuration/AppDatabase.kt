@@ -10,7 +10,6 @@ import com.puc.telias.weatherapp.database.entities.City
 @Database(entities = [City::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cityDao(): CityDao
-
     companion object {
         fun getConnection(context: Context): AppDatabase {
             return Room.databaseBuilder(

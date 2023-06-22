@@ -17,7 +17,6 @@ class CityDaoServices(context: Context) {
                 Log.i("ThiagoDebug", "insertAll: $city")
                 cityDao.insertAll(
                     CityDb(
-                        uuid = UUID.randomUUID(),
                         code = city.id,
                         name = city.nome,
                         state = city.estado
