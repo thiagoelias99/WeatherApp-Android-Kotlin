@@ -14,7 +14,9 @@ class CityDaoServices(context: Context) {
     fun insertAll(vararg cities: CityApp) {
         cities.forEach { city ->
             run {
-                Log.i("ThiagoDebug", "insertAll: $city")
+                cityDao.getByCode(city.id)?.let {
+                    return
+                }
                 cityDao.insertAll(
                     CityDb(
                         code = city.id,
@@ -26,7 +28,7 @@ class CityDaoServices(context: Context) {
         }
     }
 
-    fun getAll(): List<CityDb>{
+    fun getAll(): List<CityDb> {
         return cityDao.getAll()
     }
 }

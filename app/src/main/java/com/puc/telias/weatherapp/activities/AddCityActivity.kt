@@ -41,7 +41,7 @@ class AddCityActivity : AppCompatActivity() {
 
     fun updateCitiesList() {
         lifecycleScope.launch {
-            val cities = CityServices().getCities(binding.editTextSearchCity.text.toString())
+            val cities = CityServices().searchCities(binding.editTextSearchCity.text.toString())
             citiesAdapter.update(cities)
         }
     }

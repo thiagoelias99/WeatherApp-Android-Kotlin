@@ -10,6 +10,9 @@ interface CityDao {
     @Query("""SELECT * FROM cities""")
     fun getAll(): List<City>
 
+    @Query("""SELECT * FROM cities WHERE code = :code""")
+    fun getByCode(code: Int): City?
+
     @Insert
     fun insertAll(vararg city: City)
 
