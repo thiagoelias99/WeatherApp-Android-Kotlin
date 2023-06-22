@@ -8,7 +8,7 @@ import com.puc.telias.weatherapp.database.entities.City
 @Dao
 interface CityDao {
     @Query("""SELECT * FROM cities""")
-    fun getAll(): List<City>
+    suspend fun getAll(): List<City>
 
     @Query("""SELECT * FROM cities WHERE code = :code""")
     fun getByCode(code: Int): City?

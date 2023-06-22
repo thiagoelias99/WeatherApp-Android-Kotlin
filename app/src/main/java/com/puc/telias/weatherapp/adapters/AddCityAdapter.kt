@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.puc.telias.weatherapp.R
 import com.puc.telias.weatherapp.database.services.CityDaoServices
 import com.puc.telias.weatherapp.databinding.RecyclerAddCityBinding
 import com.puc.telias.weatherapp.models.City
+import com.puc.telias.weatherapp.services.CityServices
+import kotlinx.coroutines.launch
 
 class AddCityAdapter(
     private val context: Context,
@@ -18,9 +21,10 @@ class AddCityAdapter(
 
     private val cities = cities.toMutableList()
     private val citiesDaoServices = CityDaoServices(context)
+    private val cityServices = CityServices()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RecyclerAddCityBinding.inflate(LayoutInflater.from(context),parent,false)
+        val binding = RecyclerAddCityBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -31,7 +35,8 @@ class AddCityAdapter(
 
     override fun getItemCount(): Int = cities.size
 
-    inner class ViewHolder(binding: RecyclerAddCityBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: RecyclerAddCityBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: City) {
             val city = itemView.findViewById<TextView>(R.id.city_name)
             val state = itemView.findViewById<TextView>(R.id.city_state)
@@ -42,12 +47,18 @@ class AddCityAdapter(
 
         init {
             binding.root.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION){
-                    val clickedCity = cities[position]
-                    citiesDaoServices.insertAll(clickedCity)
-                    Toast.makeText(context, "Clicou em ${clickedCity.nome}", Toast.LENGTH_SHORT).show()
-                }
+
+                handleClick()
+            }
+        }
+
+        fun handleClick() {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val clickedCity = cities[position]
+                citiesDaoServices.insertAll(clickedCity)
+//                cityServices.addCityToDatabase(clickedCity.id)
+                Toast.makeText(context, "Clicou em ${clickedCity.nome}", Toast.LENGTH_SHORT).show()
             }
         }
     }

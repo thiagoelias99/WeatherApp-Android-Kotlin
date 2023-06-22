@@ -17,7 +17,7 @@ abstract class AppDatabase : RoomDatabase() {
                 AppDatabase::class.java,
                 "weatherapp.db"
             )
-                .allowMainThreadQueries()
+//                .allowMainThreadQueries()
                 .build()
         }
     }

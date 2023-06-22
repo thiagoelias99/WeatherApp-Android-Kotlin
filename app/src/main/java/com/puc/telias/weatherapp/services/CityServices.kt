@@ -1,5 +1,6 @@
 package com.puc.telias.weatherapp.services
 
+import android.util.Log
 import com.puc.telias.weatherapp.models.City
 import com.puc.telias.weatherapp.webclient.apiService
 
@@ -17,6 +18,7 @@ class CityServices {
     }
 
     suspend fun addCityToDatabase(code: Int){
-
+        val cityInfo = apiService.getCityInfo(code)
+        Log.i("MainActivity", "addCityToDatabase: $cityInfo")
     }
 }
