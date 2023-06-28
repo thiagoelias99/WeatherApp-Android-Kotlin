@@ -16,6 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -39,10 +42,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         val cityDao: CityDao = AppDatabase.getConnection(this).cityDao()
-        lifecycleScope.launch {
-            val cities = cityDao.getAll()
-            delay(10000)
-            Log.i(TAG, "Cities: $cities")
+
+        val fluxo: Flow<Int> = flow {
+            repeat(100) {
+                emit(it)
+                delay(1000)
+            }
         }
+
+        lifecycleScope.launch {
+            cityDao.getAll().collect{
+                Log.i(TAG, "Cities: $it")
+            }
+        }
+
+        //lifecycleScope.launch {
+        //    fluxo.collect {
+        //        Log.i(TAG, "onCreate: $it")
+        //    }
+        //}
+
     }
 }
